@@ -72,7 +72,7 @@ kubeclient::generator::generate_client() {
     fi
 
     echo "--- Building docker image ${image_name}..."
-    docker build "${SCRIPT_ROOT}"/../ -f "${SCRIPT_ROOT}/Dockerfile" -t "${image_name}" \
+    docker buildx build --platform linux/amd64 "${SCRIPT_ROOT}"/../ -f "${SCRIPT_ROOT}/Dockerfile" -t "${image_name}" \
         --build-arg OPENAPI_GENERATOR_USER_ORG="${OPENAPI_GENERATOR_USER_ORG}" \
         --build-arg OPENAPI_GENERATOR_COMMIT="${OPENAPI_GENERATOR_COMMIT}" \
         --build-arg GENERATION_XML_FILE="${CLIENT_LANGUAGE}.xml"
